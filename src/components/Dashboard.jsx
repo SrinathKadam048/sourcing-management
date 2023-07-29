@@ -3,12 +3,13 @@ import {
   BrowserRouter as Router,
   RouterProvider,
   Route,
+  Routes,
   Link,
 } from "react-router-dom";
 
 function Dashboard() {
   const tabsData = [
-    { title: "Inventory Management" , link: "/inventory"},
+    { title: "Inventory Management" , link: "/Inventory"},
     { title: "Budget" , link: "/budget"},
     {title: "Create PR" , link: "/createPR"},
     {title: "Manage Users" , link: "/manageUsers"}
