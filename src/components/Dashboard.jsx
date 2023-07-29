@@ -1,11 +1,17 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 
 function Dashboard() {
   const tabsData = [
-    { title: "Inventory Management" },
-    { title: "Budget" },
-    {title: "Create PR"},
-    {title: "Manage Users"}
+    { title: "Inventory Management" , link: "/inventory"},
+    { title: "Budget" , link: "/budget"},
+    {title: "Create PR" , link: "/createPR"},
+    {title: "Manage Users" , link: "/manageUsers"}
     // Add more tabs data as needed
   ];
   const handleCardClick = (title) => {
@@ -19,16 +25,11 @@ function Dashboard() {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {tabsData.map((tab, index) => (
           <div className="col" key={index}>
-            {/* Wrap the card with an anchor tag */}
-            <a
-              href="#"
-              className="card h-100"
-              onClick={() => handleCardClick(tab.title)}
-            >
+            <Link to={tab.link} className="card h-100" style={{textDecoration:'none'}}>
               <div className="card-body d-flex flex-column justify-content-between">
                 <h5 className="card-title">{tab.title}</h5>
               </div>
-            </a>
+            </Link>
           </div>
         ))}
       </div>

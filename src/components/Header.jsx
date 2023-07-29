@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function Header() {
     return (
@@ -10,7 +11,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <h4 style={{color : 'white'}}>Dashboard</h4>
+                <Link to="/Dashboard"><h4 style={{color : 'white'}}>Dashboard</h4></Link>
               </li>
               {/* Add more navigation items as needed */}
             </ul>
