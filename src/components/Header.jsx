@@ -10,7 +10,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <h3>Dashboard</h3>
+                <h4>Dashboard</h4>
               </li>
               {/* Add more navigation items as needed */}
             </ul>
