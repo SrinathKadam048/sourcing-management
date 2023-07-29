@@ -6,8 +6,7 @@ import Header from "./Header";
 function App() {
     return (
         <div>
-            <Header />
-            <Dashboard />
+
         </div>
     );
 }
