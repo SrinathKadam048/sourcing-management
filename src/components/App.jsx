@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 function App() {
     return (
         <div>
-            <Login />
+            {/* <Login /> */}
             <Dashboard />  
         </div>
     );
