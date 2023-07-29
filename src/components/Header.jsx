@@ -10,7 +10,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <h4>Dashboard</h4>
+                <h4 style={{color : 'white'}}>Dashboard</h4>
               </li>
               {/* Add more navigation items as needed */}
             </ul>
