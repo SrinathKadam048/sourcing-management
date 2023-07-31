@@ -12,9 +12,10 @@ function Inventory() {
 
 
     return (
-        <div className='container'>
-
-            <div className='mb-3 mt-3 text-center'>
+        
+        <div className='container mt-3'>
+            <h2>Inventory Management</h2>
+            <div className='mb-3 mt-5 text-center'>
                 <button className='btn btn-success' style={{marginRight : '1rem'}}>Add Item</button>
                 <button className='btn btn-outline-primary'>Modify Item</button>
                 
