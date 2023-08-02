@@ -10,13 +10,13 @@ function Login() {
               <input type='email' className='form-control' id='emailID' aria-describedby="emailHelp"></input>
               <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
-            <div class="col-auto">
+            <div className="col-auto">
                     <label for="inputPassword6" class="col-form-label">Password</label>
             </div>
-            <div class="col-auto">
+            <div className="col-auto">
                 <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"></input>
             </div>
-            <div class="col-auto mb-3">
+            <div className="col-auto mb-3">
                     <span id="passwordHelpInline" class="form-text">
                         Must be 8-20 characters long.
                     </span>

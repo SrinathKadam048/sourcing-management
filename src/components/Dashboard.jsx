@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
-  RouterProvider,
-  Route,
-  Routes,
   Link,
 } from "react-router-dom";
 
@@ -15,11 +11,6 @@ function Dashboard() {
     {title: "Manage Users" , link: "/manageUsers"}
     // Add more tabs data as needed
   ];
-  const handleCardClick = (title) => {
-    // Here, you can add logic for handling the click event for each card
-    console.log(`Clicked on ${title} card.`);
-    // You can navigate to the respective page or perform any other actions as needed.
-  };
 
     return (
       <div className="container mt-4">

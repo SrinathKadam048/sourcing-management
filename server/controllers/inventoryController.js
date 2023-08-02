@@ -1,12 +1,15 @@
-const express = require('express');
-const router = express.Router();
 
-// Add your Mongoose model and other setup here
+const Item = require('../models/item');
 
-// Route to fetch inventory data
-router.get('/', (req, res) => {
-  // Add logic to fetch inventory data from the database
-  // and send it as a response in JSON format
-});
+const getAllItems = async (req, res) => {
+  try {
+    const items = await Item.find({});
+    res.status(200).json(items);
+  } catch (error) {
+    res.status(500).json({error : 'Failed'});
+  }
+};
 
-module.exports = router;
+module.exports = {
+  getAllItems,
+};
