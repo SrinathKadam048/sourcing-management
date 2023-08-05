@@ -1,3 +1,5 @@
+require('dotenv').config({path: './config.env'});
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -7,7 +9,7 @@ const app = express();
 const port = 5000;
 
 // Connect to MongoDB (Replace 'mongodb://localhost:27017/inventory_db' with your database connection string)
-mongoose.connect('mongodb+srv://srinathkadam04:FullStack3000%23@cluster0.fqkluxw.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
