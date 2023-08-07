@@ -15,7 +15,6 @@ const checkItem = async (req, res) => {
     const item = await Item.findOne({ code: itemId });
 
     if (item) {
-      // Item ID already exists, send a response indicating it's invalid
       return res.status(200).json({ isValid: false, object: item.item  });
     } else {
       // Item ID is valid and doesn't exist in the database
