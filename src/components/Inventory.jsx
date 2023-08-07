@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function Inventory() {
     // const count = 1;
@@ -26,7 +27,8 @@ function Inventory() {
         <div className='container mt-3'>
             <h2>Inventory Management</h2>
             <div className='mb-3 mt-5 text-center'>
-                <button className='btn btn-success' style={{marginRight : '1rem'}}>Add Item</button>
+                {/* <button className='btn btn-success' style={{marginRight : '1rem'}}></button> */}
+                <Link to='/add-item' className='btn btn-success' style={{marginRight : '1rem'}}>Add Item</Link>
                 <button className='btn btn-outline-primary'>Modify Item</button>
                 
             </div>

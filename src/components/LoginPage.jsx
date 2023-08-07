@@ -11,13 +11,13 @@ function Login() {
               <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div className="col-auto">
-                    <label for="inputPassword6" class="col-form-label">Password</label>
+                    <label htmlFor="inputPassword6" className="col-form-label">Password</label>
             </div>
             <div className="col-auto">
-                <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"></input>
+                <input type="password" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline"></input>
             </div>
             <div className="col-auto mb-3">
-                    <span id="passwordHelpInline" class="form-text">
+                    <span id="passwordHelpInline" className="form-text">
                         Must be 8-20 characters long.
                     </span>
             </div>
