@@ -12,7 +12,6 @@ const getAllItems = async (req, res) => {
 
 const checkItem = async (req, res) => {
   try {
-    console.log("Inside Check Controller")
     const itemId = req.params.itemId;
     const item = await Item.findOne({ code: itemId });
 
@@ -31,8 +30,6 @@ const checkItem = async (req, res) => {
 
 const addItem = async(req, res) => {
   try {
-    console.log("Inside AddItem Controller");
-    console.log(req.body)
     const { itemId, itemName, itemQuantity, itemPrice } = req.body;
 
     const newItem = new Item({
@@ -41,7 +38,6 @@ const addItem = async(req, res) => {
       quantity: itemQuantity,
       price: itemPrice,
     });
-    console.log(newItem);
     const savedItem = await newItem.save();
     res.status(201).json(savedItem);
   } catch (error) {
