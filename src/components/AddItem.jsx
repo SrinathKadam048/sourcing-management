@@ -36,13 +36,12 @@ function AddItem() {
         console.log(formData);
       };
 
-      const handleSubmit = async (formData) => {
-
+      const handleSubmit = async (e) => {
+        e.preventDefault();
         // await handleValidate();
     
         // if (isItemIdValid) {
           try {
-            console.log(formData)
             // const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData);
             const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData, {
                 headers: {
@@ -55,9 +54,13 @@ function AddItem() {
             // For example, show a success message, redirect to another page, etc.
     
             // Reset the form data after successful submission
-            setFormData({ itemId: '', itemName: '', itemDescription: '' });
+            setFormData({ itemId: '',
+            itemName: '',
+            itemQuantity: 0,
+            itemPrice:0 });
+
             setValidate(false);
-            setIsItemIdValid(null);
+            setIsItemIdValid(true);
           } catch (error) {
             console.error('Error creating new item:', error);
             // Handle errors here, e.g., show an error message to the user
