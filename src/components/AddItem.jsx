@@ -38,9 +38,7 @@ function AddItem() {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        // await handleValidate();
-    
-        // if (isItemIdValid) {
+
           try {
             // const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData);
             const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData, {
