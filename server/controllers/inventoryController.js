@@ -37,7 +37,7 @@ const addItem = async(req, res) => {
 
     const newItem = new Item({
       code: itemId,
-      name: itemName,
+      item: itemName,
       quantity: itemQuantity,
       price: itemPrice,
     });
