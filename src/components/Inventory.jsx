@@ -29,7 +29,8 @@ function Inventory() {
             <div className='mb-3 mt-5 text-center'>
                 {/* <button className='btn btn-success' style={{marginRight : '1rem'}}></button> */}
                 <Link to='/add-item' className='btn btn-success' style={{marginRight : '1rem'}}>Add Item</Link>
-                <button className='btn btn-outline-primary'>Modify Item</button>
+                {/* <button className='btn btn-outline-primary'>Modify Item</button> */}
+                <Link to='/modify-item' className='btn btn-primary'>Modify Item</Link>
                 
             </div>
 
