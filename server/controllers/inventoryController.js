@@ -6,7 +6,7 @@ const getAllItems = async (req, res) => {
     const items = await Item.find({});
     res.status(200).json(items);
   } catch (error) {
-    res.status(500).json({error : 'Failed'});
+    res.status(500).json({ error: 'Failed' });
   }
 };
 
@@ -17,7 +17,7 @@ const checkItem = async (req, res) => {
 
     if (item) {
       // Item ID already exists, send a response indicating it's invalid
-      return res.status(200).json({ isValid: false, object: item.item  });
+      return res.status(200).json({ isValid: false, object: item.item });
     } else {
       // Item ID is valid and doesn't exist in the database
       return res.status(200).json({ isValid: true });
@@ -28,7 +28,7 @@ const checkItem = async (req, res) => {
   }
 };
 
-const addItem = async(req, res) => {
+const addItem = async (req, res) => {
   try {
     const { itemId, itemName, itemQuantity, itemPrice } = req.body;
 
@@ -45,8 +45,31 @@ const addItem = async(req, res) => {
   }
 };
 
+const updateItem = async (req, res) => {
+  console.log("Inside UPDATE controller")
+  try {
+    const itemId = req.params.itemId;
+    const { item, price } = req.body;
+    console.log(req.body);
+    // Find the item by itemId and update the specified fields
+    const updatedItem = await Item.findOneAndUpdate(
+      { code: itemId },
+      { $set: { item, price } },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update item' });
+  }
+}
+
 module.exports = {
   getAllItems,
   checkItem,
   addItem,
+  updateItem,
 };

@@ -5,6 +5,7 @@ import Header from "./Header";
 import { Route, Routes } from 'react-router-dom';
 import Inventory from "./Inventory";
 import AddItem from "./AddItem"
+import ModifyItem from "./ModifyItem";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Inventory" element={<Inventory />} />
             <Route path="/add-item" element={<AddItem />}/>
+            <Route path='/modify-item' element={<ModifyItem />} />
         </Routes>
         </div>
     );
