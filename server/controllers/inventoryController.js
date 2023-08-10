@@ -46,7 +46,6 @@ const addItem = async (req, res) => {
 };
 
 const updateItem = async (req, res) => {
-  console.log("Inside UPDATE controller")
   try {
     const itemId = req.params.itemId;
     const { item, price } = req.body;
@@ -67,9 +66,31 @@ const updateItem = async (req, res) => {
   }
 }
 
+const checkOutItem = async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    const { quantity } = req.body;
+    console.log(req.body);
+    // Find the item by itemId and update the specified fields
+    const updatedItem = await Item.findOneAndUpdate(
+      { code: itemId },
+      { $set: { quantity } },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update item' });
+  }
+}
+
 module.exports = {
   getAllItems,
   checkItem,
   addItem,
   updateItem,
+  checkOutItem,
 };
