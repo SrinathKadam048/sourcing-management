@@ -46,7 +46,6 @@ const addItem = async (req, res) => {
 };
 
 const updateItem = async (req, res) => {
-  console.log("Inside UPDATE controller")
   try {
     const itemId = req.params.itemId;
     const { item, price } = req.body;
@@ -68,7 +67,6 @@ const updateItem = async (req, res) => {
 }
 
 const checkOutItem = async (req, res) => {
-  console.log("Inside CHECKOUT controller")
   try {
     const itemId = req.params.itemId;
     const { quantity } = req.body;

@@ -88,8 +88,8 @@ function Inventory() {
                             <td>
                                 {item.quantity}
                                 {showCheckout && clickedItem === item && (
-                                    <div className='form-gorup row'>
-                                        <div className="col-xs-2">
+                                    <div className='form-gorup row justify-content-center'>
+                                        <div className='col-sm-6'>
                                             <input
                                                 type="number"
                                                 value={checkoutQuantity}
@@ -98,10 +98,13 @@ function Inventory() {
                                                 className='form-control'
                                             // max={item.quantity} // You might want to limit it to the available quantity
                                             />
+                                            <div className='d-flex mt-1'>
+                                                <button className="btn btn-primary" onClick={handleCheckout}>
+                                                    Confirm Checkout
+                                                </button>
+                                            </div>
                                         </div>
-                                        <button className="btn btn-primary" onClick={handleCheckout}>
-                                            Confirm Checkout
-                                        </button>
+
                                     </div>
                                 )}
                             </td>
@@ -111,7 +114,7 @@ function Inventory() {
                                     className="btn btn-danger"
                                     onClick={() => handleCheckoutClick(item)}
                                 >
-                                    Checkout
+                                    {showCheckout ? "Cancel" : "Checkout"}
                                 </button>
                             </td>
                         </tr>
