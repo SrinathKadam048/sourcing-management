@@ -1,4 +1,4 @@
-require('dotenv').config({path: './config.env'});
+require('dotenv').config({ path: './config.env' });
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -22,6 +22,9 @@ app.use(cors());
 
 const inventoryRoutes = require('./routes/inventoryRoutes');
 app.use(inventoryRoutes);
+
+const budgetRoutes = require('./routes/budgetRoutes');
+app.use(budgetRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

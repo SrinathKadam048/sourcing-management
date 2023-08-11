@@ -64,11 +64,12 @@ function Inventory() {
                 {/* <button className='btn btn-success' style={{marginRight : '1rem'}}></button> */}
                 <Link to='/add-item' className='btn btn-success' style={{ marginRight: '1rem' }}>Add Item</Link>
                 {/* <button className='btn btn-outline-primary'>Modify Item</button> */}
-                <Link to='/modify-item' className='btn btn-primary'>Modify Item</Link>
+                <Link to='/modify-item' className='btn btn-primary' style={{ marginRight: '1rem' }}>Modify Item</Link>
+                <Link to='/createPR' className='btn' style={{ backgroundColor: 'purple', color: 'white' }}>Create PR</Link>
 
             </div>
 
-            <table className="table">
+            <table className="table table-bordered table-hover">
                 <thead className="table-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -110,12 +111,13 @@ function Inventory() {
                             </td>
                             <td>{item.price}</td>
                             <td style={{ width: "116px" }}>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleCheckoutClick(item)}
-                                >
-                                    {showCheckout ? "Cancel" : "Checkout"}
-                                </button>
+                                {item.quantity != 0 && (
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => handleCheckoutClick(item)}
+                                    >
+                                        {showCheckout ? "Cancel" : "Checkout"}
+                                    </button>)}
                             </td>
                         </tr>
                     ))}
