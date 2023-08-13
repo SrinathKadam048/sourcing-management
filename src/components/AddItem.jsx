@@ -61,7 +61,9 @@ function AddItem() {
             alert("New Item Created")
             // Handle any actions after successful form submission
             // For example, show a success message, redirect to another page, etc.
-            window.location.reload();
+            const baseUrl = window.location.href.split('?')[0];
+            console.log(baseUrl)
+            window.location.replace(baseUrl);
             // Reset the form data after successful submission
 
 
