@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Connect to MongoDB (Replace 'mongodb://localhost:27017/inventory_db' with your database connection string)
 mongoose.connect(process.env.DATABASE, {
