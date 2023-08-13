@@ -20,13 +20,13 @@ mongoose.connect(process.env.DATABASE, {
 app.use(bodyParser.json());
 app.use(cors());
 
-const inventoryRoutes = require('./routes/inventoryRoutes');
+const inventoryRoutes = require('./server/routes/inventoryRoutes');
 app.use(inventoryRoutes);
 
-const budgetRoutes = require('./routes/budgetRoutes');
+const budgetRoutes = require('./server/routes/budgetRoutes');
 app.use(budgetRoutes);
 
-const prRoutes = require('./routes/purchaseReqRoutes');
+const prRoutes = require('./server/routes/purchaseReqRoutes');
 app.use(prRoutes);
 
 app.listen(port, () => {
