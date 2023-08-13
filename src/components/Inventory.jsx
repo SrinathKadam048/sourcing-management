@@ -7,6 +7,7 @@ function Inventory() {
     const [showCheckout, setShowCheckout] = useState(false);
     const [clickedItem, setClickedItem] = useState(null);
     const [checkoutQuantity, setCheckoutQuantity] = useState(0);
+    const [actionTaken, setActionTaken] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/inventory').then((response) => {
@@ -14,26 +15,34 @@ function Inventory() {
         }).catch((error) => {
             console.error('Error fetching inventory data', error);
         })
-    }, []);
+    }, [actionTaken]);
 
 
     const handleCheckout = async (e) => {
         e.preventDefault();
         const sold = checkoutQuantity;
         const newQuantity = clickedItem.quantity - sold;
-        try {
-            const newData = {
-                quantity: newQuantity
-            };
+        if (newQuantity >= 0) {
+            try {
+                const newData = {
+                    quantity: newQuantity
+                };
 
-            await updateCheckOutItem(clickedItem.code, newData);
+                await updateCheckOutItem(clickedItem.code, newData);
 
-            // Handle any actions after a successful update, such as showing a success message
-            console.log('Item checked out successfully');
-            alert('Item checked out successfully');
-        } catch (error) {
-            console.error('Error Checking out item:', error);
+                // Handle any actions after a successful update, such as showing a success message
+                console.log('Item checked out successfully');
+                alert('Item checked out successfully');
+            } catch (error) {
+                console.error('Error Checking out item:', error);
+            }
+            setActionTaken(!actionTaken)
+            setShowCheckout(false)
         }
+        else {
+            alert("Stock Insufficient! Enter a value less than available stock")
+        }
+
     };
 
     const updateCheckOutItem = async (itemId, newData) => {
@@ -60,15 +69,17 @@ function Inventory() {
 
         <div className='container mt-3'>
             <h2>Inventory Management</h2>
+            <hr></hr>
             <div className='mb-3 mt-5 text-center'>
                 {/* <button className='btn btn-success' style={{marginRight : '1rem'}}></button> */}
                 <Link to='/add-item' className='btn btn-success' style={{ marginRight: '1rem' }}>Add Item</Link>
                 {/* <button className='btn btn-outline-primary'>Modify Item</button> */}
-                <Link to='/modify-item' className='btn btn-primary'>Modify Item</Link>
+                <Link to='/modify-item' className='btn btn-primary' style={{ marginRight: '1rem' }}>Modify Item</Link>
+                <Link to='/createPR' className='btn' style={{ backgroundColor: 'purple', color: 'white' }}>Create PR</Link>
 
             </div>
 
-            <table className="table">
+            <table className="table table-bordered table-hover">
                 <thead className="table-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -110,12 +121,16 @@ function Inventory() {
                             </td>
                             <td>{item.price}</td>
                             <td style={{ width: "116px" }}>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleCheckoutClick(item)}
-                                >
-                                    {showCheckout ? "Cancel" : "Checkout"}
-                                </button>
+                                {item.quantity != 0 && (
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => handleCheckoutClick(item)}
+                                    >
+                                        {showCheckout ? "Cancel" : "Checkout"}
+                                    </button>)}
+                                {item.quantity == 0 && (
+                                    <Link to='/createPR' className='btn' style={{ backgroundColor: 'purple', color: 'white' }}>Create PR</Link>
+                                )}
                             </td>
                         </tr>
                     ))}
