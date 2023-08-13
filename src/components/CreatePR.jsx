@@ -16,7 +16,7 @@ function CreatePR() {
     // FETCHING DETAILS FOR DROPDOWN
     const fetchItemDetails = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/inventory');
+            const response = await axios.get('https://sourcing-management-app.onrender.com/api/inventory');
             const filteredDetails = response.data.map(item => ({
                 code: item.code,
                 item: item.item,
