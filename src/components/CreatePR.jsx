@@ -51,19 +51,23 @@ function CreatePR() {
             // };
             const newData = {
                 code: selectedItemId,
-
+                name: selectedItemData.item,
+                quantity: newQuantity,
+                price: selectedItemData.price,
+                cost: newQuantity * selectedItemData.price,
+                isAction: false,
             }
 
-            // Call the updateItem function to update the item in the database
-            //await updateItem(selectedItemId, newData);
-
-            // Handle any actions after a successful update, such as showing a success message
-            console.log('Item updated successfully');
-            alert('Item updated successfully');
-
+            const response = await axios.post('http://localhost:5000/api/budget/addPR', newData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log('New PR created:', response.data);
+            alert("New PR Created")
             // You can also reset the form data or redirect to another page if needed
         } catch (error) {
-            console.error('Error updating item:', error);
+            console.error('Error creating PR:', error);
             // Handle errors here, show an error message to the user, etc.
         }
     };
@@ -93,7 +97,7 @@ function CreatePR() {
                     </select>
                 </div>
                 <div className="col-auto mt-3">
-                    <form noValidate>
+                    <form noValidate onSubmit={handleSubmit}>
                         <label className='form-label'>Item Name </label>
                         <input
                             type="text"
@@ -122,6 +126,10 @@ function CreatePR() {
                                 onChange={handleFieldChange}
                                 className='form-control'
                             />
+                        </div>
+
+                        <div className="d-flex justify-content-center">
+                            <button type="submit" className="btn btn-primary" >Submit</button>
                         </div>
                     </form>
                 </div>

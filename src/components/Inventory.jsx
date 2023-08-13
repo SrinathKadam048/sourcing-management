@@ -7,6 +7,7 @@ function Inventory() {
     const [showCheckout, setShowCheckout] = useState(false);
     const [clickedItem, setClickedItem] = useState(null);
     const [checkoutQuantity, setCheckoutQuantity] = useState(0);
+    const [actionTaken, setActionTaken] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:5000/api/inventory').then((response) => {
@@ -14,26 +15,34 @@ function Inventory() {
         }).catch((error) => {
             console.error('Error fetching inventory data', error);
         })
-    }, []);
+    }, [actionTaken]);
 
 
     const handleCheckout = async (e) => {
         e.preventDefault();
         const sold = checkoutQuantity;
         const newQuantity = clickedItem.quantity - sold;
-        try {
-            const newData = {
-                quantity: newQuantity
-            };
+        if (newQuantity >= 0) {
+            try {
+                const newData = {
+                    quantity: newQuantity
+                };
 
-            await updateCheckOutItem(clickedItem.code, newData);
+                await updateCheckOutItem(clickedItem.code, newData);
 
-            // Handle any actions after a successful update, such as showing a success message
-            console.log('Item checked out successfully');
-            alert('Item checked out successfully');
-        } catch (error) {
-            console.error('Error Checking out item:', error);
+                // Handle any actions after a successful update, such as showing a success message
+                console.log('Item checked out successfully');
+                alert('Item checked out successfully');
+            } catch (error) {
+                console.error('Error Checking out item:', error);
+            }
+            setActionTaken(!actionTaken)
+            setShowCheckout(false)
         }
+        else {
+            alert("Stock Insufficient! Enter a value less than available stock")
+        }
+
     };
 
     const updateCheckOutItem = async (itemId, newData) => {
@@ -60,6 +69,7 @@ function Inventory() {
 
         <div className='container mt-3'>
             <h2>Inventory Management</h2>
+            <hr></hr>
             <div className='mb-3 mt-5 text-center'>
                 {/* <button className='btn btn-success' style={{marginRight : '1rem'}}></button> */}
                 <Link to='/add-item' className='btn btn-success' style={{ marginRight: '1rem' }}>Add Item</Link>
@@ -118,6 +128,9 @@ function Inventory() {
                                     >
                                         {showCheckout ? "Cancel" : "Checkout"}
                                     </button>)}
+                                {item.quantity == 0 && (
+                                    <Link to='/createPR' className='btn' style={{ backgroundColor: 'purple', color: 'white' }}>Create PR</Link>
+                                )}
                             </td>
                         </tr>
                     ))}

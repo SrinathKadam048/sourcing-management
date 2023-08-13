@@ -7,8 +7,8 @@ function AddItem() {
         marginLeft: "-1rem"
     }
 
-    const [isItemIdValid, setIsItemIdValid] = useState(true);
-    const [isValidate, setValidate] = useState(false);
+    const [isItemIdValid, setIsItemIdValid] = useState();
+    const [isValidate, setValidate] = useState();
     const [resObj, setResObj] = useState("");
     const [formData, setFormData] = useState({
         itemId: '',
@@ -19,20 +19,32 @@ function AddItem() {
 
     const handleValidate = async () => {
         try {
-            setValidate(true)
+
             const response = await axios.get(`http://localhost:5000/api/inventory/checkItem/${formData.itemId}`);
-            setIsItemIdValid(response.data.isValid);
             setResObj(response.data.object);
+            if (!response.data.isValid) {
+                setIsItemIdValid(false);
+                setValidate(true)
+                console.log(isItemIdValid, isValidate);
+                alert("Invalid Item ID")
+            }
+            else if (response.data.isValid) {
+                setIsItemIdValid(true)
+                setValidate(true)
+            }
         } catch (error) {
             console.error("Error while validating item ID:", error);
         }
-
     };
 
     const handleItemIdChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
         console.log(formData);
+        if (isValidate && isItemIdValid) {
+            setValidate()
+            setIsItemIdValid()
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -78,14 +90,14 @@ function AddItem() {
                         <label className='form-label'>Item Id: </label>
                         <input
                             type='text'
-                            className={`form-control ${isItemIdValid ? "" : "is-invalid"}`}
+                            className={`form-control`}
                             name='itemId'
                             aria-describedby="itemIdHelp"
                             onChange={handleItemIdChange}
                             value={formData.itemId}
                         >
                         </input>
-                        {!isValidate && isItemIdValid === true && (
+                        {!isValidate && isItemIdValid == null && (
                             <div id="itemIdHelp" className="form-text">
                                 Enter Unique Item ID here
                             </div>
@@ -147,7 +159,10 @@ function AddItem() {
                     </div>
                     <div className="d-flex justify-content-center">
                         <button className="btn btn-success" type="button" style={myStyle} onClick={handleValidate}>Validate</button>
-                        <button type="submit" className="btn btn-primary" >Submit</button>
+                        {/* <button type="submit" className="btn btn-primary" >Submit</button> */}
+                        {isItemIdValid && (
+                            <button type="submit" className="btn btn-primary" >Submit</button>
+                        )}
                     </div>
                 </form>
             </div>

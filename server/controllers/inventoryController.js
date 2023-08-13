@@ -49,7 +49,6 @@ const updateItem = async (req, res) => {
   try {
     const itemId = req.params.itemId;
     const { item, price } = req.body;
-    console.log(req.body);
     // Find the item by itemId and update the specified fields
     const updatedItem = await Item.findOneAndUpdate(
       { code: itemId },
@@ -70,7 +69,26 @@ const checkOutItem = async (req, res) => {
   try {
     const itemId = req.params.itemId;
     const { quantity } = req.body;
-    console.log(req.body);
+    // Find the item by itemId and update the specified fields
+    const updatedItem = await Item.findOneAndUpdate(
+      { code: itemId },
+      { $set: { quantity } },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update item' });
+  }
+}
+
+const updatePRQuantity = async (req, res) => {
+  try {
+    const itemId = req.params.itemCode;
+    const { quantity } = req.body;
     // Find the item by itemId and update the specified fields
     const updatedItem = await Item.findOneAndUpdate(
       { code: itemId },
@@ -93,4 +111,5 @@ module.exports = {
   addItem,
   updateItem,
   checkOutItem,
+  updatePRQuantity,
 };

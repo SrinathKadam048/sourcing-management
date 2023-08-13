@@ -26,6 +26,9 @@ app.use(inventoryRoutes);
 const budgetRoutes = require('./routes/budgetRoutes');
 app.use(budgetRoutes);
 
+const prRoutes = require('./routes/purchaseReqRoutes');
+app.use(prRoutes);
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
