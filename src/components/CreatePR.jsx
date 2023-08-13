@@ -65,7 +65,8 @@ function CreatePR() {
             });
             console.log('New PR created:', response.data);
             alert("New PR Created")
-            setSelectedItemId("")
+            // setSelectedItemId("")
+            window.location.reload()
             // You can also reset the form data or redirect to another page if needed
         } catch (error) {
             console.error('Error creating PR:', error);
