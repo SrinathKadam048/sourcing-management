@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import Bugfender from '../bugfender'
 
 function AddItem() {
     const myStyle = {
@@ -25,12 +26,11 @@ function AddItem() {
             if (!response.data.isValid) {
                 setIsItemIdValid(false);
                 setValidate(true)
-                console.log(isItemIdValid, isValidate);
                 alert("Invalid Item ID")
             }
             else if (response.data.isValid) {
                 setIsItemIdValid(true)
-                setValidate(true)
+                setValidate()
             }
         } catch (error) {
             console.error("Error while validating item ID:", error);
@@ -40,7 +40,6 @@ function AddItem() {
     const handleItemIdChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        console.log(formData);
         if (isValidate && isItemIdValid) {
             setValidate()
             setIsItemIdValid()
@@ -48,7 +47,7 @@ function AddItem() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        //e.preventDefault();
 
         try {
             // const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData);
@@ -57,7 +56,8 @@ function AddItem() {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log('New item created:', response.data);
+            // console.log('New item created:', response.data);
+            Bugfender.log('New item created:', response.data)
             alert("New Item Created")
             // Handle any actions after successful form submission
             // For example, show a success message, redirect to another page, etc.
