@@ -9,7 +9,7 @@ function Budget() {
     const [budgetFlag, setBudgetFlag] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/budget').then((response) => {
+        axios.get('https://sourcing-management-app.onrender.com/api/budget').then((response) => {
             setBudgetData(response.data);
         }).catch((error) => {
             console.error('Error fetching BUDGET data', error);
@@ -19,7 +19,7 @@ function Budget() {
     }, [budgetFlag]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/budget/getAllPRs').then((response) => {
+        axios.get('https://sourcing-management-app.onrender.com/api/budget/getAllPRs').then((response) => {
             setPRData(response.data);
         }).catch((error) => {
             console.error('Error fetching PR data', error);
@@ -55,7 +55,7 @@ function Budget() {
 
     const updatePRItem = async (itemCode, approvedItemQuantity) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/inventory/updatePRQuantity/${itemCode}`, approvedItemQuantity)
+            const response = await axios.put(`https://sourcing-management-app.onrender.com/api/inventory/updatePRQuantity/${itemCode}`, approvedItemQuantity)
             console.log(response.data)
         }
         catch (error) {
@@ -65,7 +65,7 @@ function Budget() {
 
     const updateBudget = async (company, newBudget) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/budget/updateBudget/${company}`, newBudget)
+            const response = await axios.put(`https://sourcing-management-app.onrender.com/api/budget/updateBudget/${company}`, newBudget)
             console.log(response.data)
             setBudgetFlag(!budgetFlag);
         }
@@ -92,7 +92,7 @@ function Budget() {
 
     const updatePR = async (PR_ID, newData) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/budget/updatePR/${PR_ID}`, newData)
+            const response = await axios.put(`https://sourcing-management-app.onrender.com/api/budget/updatePR/${PR_ID}`, newData)
             console.log('Item updated:', response.data);
             setActionTaken(!actionTaken)
         } catch (error) {

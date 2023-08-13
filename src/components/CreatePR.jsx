@@ -58,7 +58,7 @@ function CreatePR() {
                 isAction: false,
             }
 
-            const response = await axios.post('http://localhost:5000/api/budget/addPR', newData, {
+            const response = await axios.post('https://sourcing-management-app.onrender.com/api/budget/addPR', newData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

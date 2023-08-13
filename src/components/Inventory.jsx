@@ -48,7 +48,7 @@ function Inventory() {
     const updateCheckOutItem = async (itemId, newData) => {
         try {
             console.log(newData);
-            const response = await axios.put(`http://localhost:5000/api/inventory/checkOutItem/${itemId}`, newData);
+            const response = await axios.put(`https://sourcing-management-app.onrender.com/api/inventory/checkOutItem/${itemId}`, newData);
             console.log('Item updated:', response.data);
         } catch (error) {
             console.error('Error updating item:', error);
