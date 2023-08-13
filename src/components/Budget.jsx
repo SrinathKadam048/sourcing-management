@@ -11,7 +11,6 @@ function Budget() {
     useEffect(() => {
         axios.get('http://localhost:5000/api/budget').then((response) => {
             setBudgetData(response.data);
-            console.log(budgetData.company)
         }).catch((error) => {
             console.error('Error fetching BUDGET data', error);
         })
