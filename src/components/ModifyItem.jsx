@@ -55,7 +55,7 @@ function ModifyItem() {
       // Handle any actions after a successful update, such as showing a success message
       console.log('Item updated successfully');
       alert('Item updated successfully');
-
+      setSelectedItemId("");
       // You can also reset the form data or redirect to another page if needed
     } catch (error) {
       console.error('Error updating item:', error);
