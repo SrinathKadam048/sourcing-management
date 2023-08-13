@@ -21,7 +21,7 @@ function AddItem() {
     const handleValidate = async () => {
         try {
 
-            const response = await axios.get(`http://localhost:5000/api/inventory/checkItem/${formData.itemId}`);
+            const response = await axios.get(`https://sourcing-management-app.onrender.com/api/inventory/checkItem/${formData.itemId}`);
             setResObj(response.data.object);
             if (!response.data.isValid) {
                 setIsItemIdValid(false);
@@ -47,11 +47,11 @@ function AddItem() {
     };
 
     const handleSubmit = async (e) => {
-        //e.preventDefault();
+        e.preventDefault();
 
         try {
             // const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData);
-            const response = await axios.post('http://localhost:5000/api/inventory/addItem', formData, {
+            const response = await axios.post('https://sourcing-management-app.onrender.com/api/inventory/addItem', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -61,14 +61,11 @@ function AddItem() {
             alert("New Item Created")
             // Handle any actions after successful form submission
             // For example, show a success message, redirect to another page, etc.
-
+            const baseUrl = window.location.href.split('?')[0];
+            console.log(baseUrl)
+            window.location.replace(baseUrl);
             // Reset the form data after successful submission
-            setFormData({
-                itemId: '',
-                itemName: '',
-                itemQuantity: 0,
-                itemPrice: 0
-            });
+
 
             setValidate(false);
             setIsItemIdValid(true);

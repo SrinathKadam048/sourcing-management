@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Connect to MongoDB (Replace 'mongodb://localhost:27017/inventory_db' with your database connection string)
 mongoose.connect(process.env.DATABASE, {
@@ -20,13 +20,13 @@ mongoose.connect(process.env.DATABASE, {
 app.use(bodyParser.json());
 app.use(cors());
 
-const inventoryRoutes = require('./routes/inventoryRoutes');
+const inventoryRoutes = require('./server/routes/inventoryRoutes');
 app.use(inventoryRoutes);
 
-const budgetRoutes = require('./routes/budgetRoutes');
+const budgetRoutes = require('./server/routes/budgetRoutes');
 app.use(budgetRoutes);
 
-const prRoutes = require('./routes/purchaseReqRoutes');
+const prRoutes = require('./server/routes/purchaseReqRoutes');
 app.use(prRoutes);
 
 app.listen(port, () => {

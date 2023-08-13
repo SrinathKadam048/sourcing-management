@@ -14,7 +14,7 @@ function ModifyItem() {
 
   const fetchItemDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/inventory');
+      const response = await axios.get('https://sourcing-management-app.onrender.com/api/inventory');
       const filteredDetails = response.data.map(item => ({
         code: item.code,
         item: item.item,
@@ -55,7 +55,7 @@ function ModifyItem() {
       // Handle any actions after a successful update, such as showing a success message
       console.log('Item updated successfully');
       alert('Item updated successfully');
-
+      setSelectedItemId("");
       // You can also reset the form data or redirect to another page if needed
     } catch (error) {
       console.error('Error updating item:', error);
@@ -65,7 +65,7 @@ function ModifyItem() {
 
   const updateItem = async (itemId, newData) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/inventory/updateItem/${itemId}`, newData);
+      const response = await axios.put(`https://sourcing-management-app.onrender.com/api/inventory/updateItem/${itemId}`, newData);
       console.log('Item updated:', response.data);
     } catch (error) {
       console.error('Error updating item:', error);

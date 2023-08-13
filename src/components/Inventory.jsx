@@ -10,7 +10,7 @@ function Inventory() {
     const [actionTaken, setActionTaken] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/inventory').then((response) => {
+        axios.get(`https://sourcing-management-app.onrender.com/api/inventory`).then((response) => {
             setInventoryData(response.data);
         }).catch((error) => {
             console.error('Error fetching inventory data', error);
@@ -48,7 +48,7 @@ function Inventory() {
     const updateCheckOutItem = async (itemId, newData) => {
         try {
             console.log(newData);
-            const response = await axios.put(`http://localhost:5000/api/inventory/checkOutItem/${itemId}`, newData);
+            const response = await axios.put(`https://sourcing-management-app.onrender.com/api/inventory/checkOutItem/${itemId}`, newData);
             console.log('Item updated:', response.data);
         } catch (error) {
             console.error('Error updating item:', error);
@@ -121,14 +121,14 @@ function Inventory() {
                             </td>
                             <td>{item.price}</td>
                             <td style={{ width: "116px" }}>
-                                {item.quantity != 0 && (
+                                {item.quantity !== 0 && (
                                     <button
                                         className="btn btn-danger"
                                         onClick={() => handleCheckoutClick(item)}
                                     >
                                         {showCheckout ? "Cancel" : "Checkout"}
                                     </button>)}
-                                {item.quantity == 0 && (
+                                {item.quantity === 0 && (
                                     <Link to='/createPR' className='btn' style={{ backgroundColor: 'purple', color: 'white' }}>Create PR</Link>
                                 )}
                             </td>

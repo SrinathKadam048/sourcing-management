@@ -16,7 +16,7 @@ function CreatePR() {
     // FETCHING DETAILS FOR DROPDOWN
     const fetchItemDetails = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/inventory');
+            const response = await axios.get('https://sourcing-management-app.onrender.com/api/inventory');
             const filteredDetails = response.data.map(item => ({
                 code: item.code,
                 item: item.item,
@@ -58,13 +58,15 @@ function CreatePR() {
                 isAction: false,
             }
 
-            const response = await axios.post('http://localhost:5000/api/budget/addPR', newData, {
+            const response = await axios.post('https://sourcing-management-app.onrender.com/api/budget/addPR', newData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
             console.log('New PR created:', response.data);
             alert("New PR Created")
+            // setSelectedItemId("")
+            window.location.reload()
             // You can also reset the form data or redirect to another page if needed
         } catch (error) {
             console.error('Error creating PR:', error);
